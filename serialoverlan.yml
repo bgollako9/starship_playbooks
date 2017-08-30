@@ -12,7 +12,6 @@
        state: "{{ state }}" 
        starship_options: "{{ starship_options }}"
      register: sol_output
-     ignore_errors: yes   
 
    - set_stats:
       data:
