@@ -6,13 +6,12 @@
   tasks:
    - name: configure user policy properties 
      cisco_imc_user:
-       name: "{{ username }}" 
+       name: "{{ name }}" 
        priv: "{{ priv }}"
        pwd: "{{ pwd }}"
        state: "{{ state }}" 
        starship_options: "{{ starship_options }}"
      register: user_policy_output
-     ignore_errors: yes   
 
    - set_stats:
       data:
