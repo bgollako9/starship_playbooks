@@ -1,0 +1,18 @@
+---
+# This role contains task for configuring user policy properties 
+- hosts: localhost 
+  connection: local
+  gather_facts: no
+  tasks:
+   - name: configure user policy properties 
+     cisco_imc_user:
+       name: "{{ name }}" 
+       priv: "{{ priv }}"
+       pwd: "{{ pwd }}"
+       state: "{{ state }}" 
+       starship_options: "{{ starship_options }}"
+     register: user_policy_output
+
+   - set_stats:
+      data:
+        Result: {Message: "{{ user_policy_output['msg'] }}", State: "{{ user_policy_output['status'] }}", Type: "config"}  
