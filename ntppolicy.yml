@@ -1,0 +1,16 @@
+---
+# This role contains task for configuring sol properties
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+   - name: configure ntp policy properties
+     cisco_imc_ntp:
+       state: "{{ state }}"
+       ntp_servers: "{{ ntp_servers }}"
+       starship_options: "{{ starship_options }}"
+     register: ntp_policy_output
+
+   - set_stats:
+      data:
+        Result: {Message: "{{ ntp_policy_output['msg'] }}", State: "{{ ntp_policy_output['status'] }}", Type: "config"}
